@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	CharacterController cController;
-	int playerVision_MaxY = -25;
-	int playerVision_MinY = 50;
+	int playerVision_MaxY = -50;
+	int playerVision_MinY = 65;
 	//float cameraPositionX;
 	Vector3 euler;
 
@@ -24,10 +24,10 @@ public class PlayerController : MonoBehaviour {
 		float mouseY = Input.GetAxis ("Mouse Y");
 		//Vector3 currentPositionInWorld = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		cController.SimpleMove (transform.forward * inputY * 5f);
-
+		cController.SimpleMove (transform.right * inputX * 5f);
 		Camera.main.transform.localEulerAngles = euler;
 		//euler.y += mouseY;
-		euler.x -= mouseY;
+		euler.x -= mouseY*0.5f;
 		if (euler.x >= playerVision_MinY) {
 			euler.x = playerVision_MinY;
 		}
