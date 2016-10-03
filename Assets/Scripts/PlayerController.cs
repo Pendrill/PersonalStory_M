@@ -3,51 +3,57 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	//Variable used to access the character controller (what we will use to make the player character move).
 	CharacterController cController;
-	int playerVision_MaxY = -50;
-	int playerVision_MinY = 65;
-	//float cameraPositionX;
+	//Determines how hign and low the player character can look
+	int playerVisionMinX = -50;
+	int playerVisionMaxX = 65;
+	//This value will increase or decrease the mouse sensitivity. 
+	//To decrease it pick a number between 0-1, to increase it pick any other positive number.
+	// Picking 1 will keep the mouse on it's default sensitivity (though picking really big numbers might be bad...).
+	float mouse_Sensitivity = 1f;
+	//Vector 3 used to keep track of where the character is currently looking
 	Vector3 euler;
 
 	// Use this for initialization
 	void Start () {
+		//Initialize the character controller from the player character
 		cController = GetComponent<CharacterController> ();
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Screen.lockCursor = true;
+		//First we lock the mouse into the screen
+		Screen.lockCursor = true;
+		//TODO: Consider adding the possibility for the player to unlock the mouse from the screen; and then back again
+
+		//Create all the variables that will keep track of player movement/location
 		float inputX = Input.GetAxis ("Horizontal");
 		float inputY = Input.GetAxis ("Vertical");
 		float mouseX = Input.GetAxis ("Mouse X");
 		float mouseY = Input.GetAxis ("Mouse Y");
-		//Vector3 currentPositionInWorld = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		//Move the character forwards and back
 		cController.SimpleMove (transform.forward * inputY * 5f);
+		//and left and right.
 		cController.SimpleMove (transform.right * inputX * 5f);
+		//assign the rotation angles of the camera object
 		Camera.main.transform.localEulerAngles = euler;
-		//euler.y += mouseY;
-		euler.x -= mouseY*0.5f;
-		if (euler.x >= playerVision_MinY) {
-			euler.x = playerVision_MinY;
-		}
-		if (euler.x <= playerVision_MaxY) {
-			euler.x = playerVision_MaxY;
-		}
+		//have the angle that rotates the camera up and down be subject to the mouse movement.
 
+		euler.x -= mouseY*mouse_Sensitivity;
 
-
-
-		//mouseY = Mathf.Clamp (mouseY, playerVision_MaxY, playerVision_MinY);
-
-		//if (Camera.main.transform.rotation.x > 25) {
-
-		//}
-		//cameraPositionX = Camera.main.transform.rotation.x;
-		//cameraPositionX = Mathf.Clamp (cameraPositionX, playerVision_MaxY, playerVision_MinY);
-		Camera.main.transform.Rotate(-mouseY,0f,0f);
+		//Camera.main.transform.Rotate(-mouseY,0f,0f);
+		//Rotates the player object left and right through the use of the mouse (look left and right).
 		transform.Rotate (0f, mouseX, 0f);
-		//	Camera.main.transform.rotation.x = cameraPositionX;
-		//mouseY = Mathf.Clamp (mouseY, playerVision_MaxY, playerVision_MinY);
+
+		//checks if the rotation angle exceeds the max and min allowed
+		if (euler.x >= playerVisionMaxX) {
+			//If so then the angle is locked between the max and min values.
+			euler.x = Mathf.Clamp(euler.x,playerVisionMinX,playerVisionMaxX);
+		}
+		//The same is done here but for the min values.
+		if (euler.x <= playerVisionMinX) {
+			euler.x = Mathf.Clamp(euler.x,playerVisionMinX,playerVisionMaxX);
+		}
 	}
 }
