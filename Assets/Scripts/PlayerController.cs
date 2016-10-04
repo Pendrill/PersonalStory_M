@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	//Determines how hign and low the player character can look
 	int playerVisionMinX = -50;
 	int playerVisionMaxX = 65;
-	//This value will increase or decrease the mouse sensitivity. 
+	//This value will increase or decrease the mouse sensitivity.
 	//To decrease it pick a number between 0-1, to increase it pick any other positive number.
 	// Picking 1 will keep the mouse on it's default sensitivity (though picking really big numbers might be bad...).
 	float mouse_Sensitivity = 1f;
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 		//Initialize the character controller from the player character
 		cController = GetComponent<CharacterController> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		//First we lock the mouse into the screen
