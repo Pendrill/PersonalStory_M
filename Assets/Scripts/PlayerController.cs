@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//First we lock the mouse into the screen
-		Screen.lockCursor = true;
+		//Screen.lockCursor = true;
 		//TODO: Consider adding the possibility for the player to unlock the mouse from the screen; and then back again
 
 		//Create all the variables that will keep track of player movement/location

@@ -1,0 +1,8 @@
+Hello there
+You are coming close to an object
+maybe try and interact with it
+you never know what could happen
+
+I am a sphere
+You should try and pick me up 
+but you can not do that right now
