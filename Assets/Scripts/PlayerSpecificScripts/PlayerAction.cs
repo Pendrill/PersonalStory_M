@@ -39,6 +39,6 @@ public class PlayerAction : MonoBehaviour {
 	}
 
 	public bool getTouch(){
-		return isTalking;
+		return isTouching;
 	}
 }

@@ -146,6 +146,12 @@ public class TextBoxManager : MonoBehaviour {
 			//We split the new lines into the wiped array.
 			textLines = new string[1];
 			textLines = (newTextFile.text.Split ('\n'));
+			//currentLine = 0;
+			endAtLine = textLines.Length - 1;
 		}
+	}
+
+	public int getEndLine(){
+		return endAtLine;
 	}
 }
