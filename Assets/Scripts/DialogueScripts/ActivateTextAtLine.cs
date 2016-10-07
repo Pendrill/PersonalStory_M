@@ -108,8 +108,10 @@ public class ActivateTextAtLine : MonoBehaviour {
 	void OnTriggerExit (Collider other){
 		//If the player exits the collision area then the player should noo longer be able to press a button 
 		//and activate the object.
-		if (other.name == "Player") {
+		if (other.tag == "Player") {
 			waitForPress = false;
 		}
 	}
+
+	//TODO: change color of reticle when in range of object.
 }
