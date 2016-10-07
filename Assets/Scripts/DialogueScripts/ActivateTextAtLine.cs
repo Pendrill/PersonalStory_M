@@ -82,7 +82,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 	//check when the player enter the collider of the specific object
 	void OnTriggerEnter(Collider other){
 		//checks if it is the player that in fact collided with the object
-		if (other.tag == "Finish") {
+		if (other.tag == "Player") {
 			Debug.Log ("square collides");
 			//checks if the object needs a button press to be activated
 			if (requireButtonPress) {
