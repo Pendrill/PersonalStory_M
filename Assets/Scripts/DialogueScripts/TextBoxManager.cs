@@ -28,9 +28,11 @@ public class TextBoxManager : MonoBehaviour {
 	private bool cancelTyping = false;
 	//How fast is the text scrolling on the screen
 	public float typeSpeed;
+	private ActivateTextAtLine textOnScreen;
 
 	// Use this for initialization
 	void Start () {
+		textOnScreen = FindObjectOfType<ActivateTextAtLine> ();
 		//We check if there is a txt file to import
 		if (textFile != null) {
 			//We split each line into a new index within the array
@@ -130,10 +132,12 @@ public class TextBoxManager : MonoBehaviour {
 	/// Disables the text box.
 	/// </summary>
 	public void disableTextBox (){
+		textOnScreen.setIsTextOnScreen (false);
 		//set the textBox to inactive
 		textBox.SetActive (false);
 		//the textBox is no longer active
 		isTextBoxActive = false;
+
 	}
 
 	/// <summary>

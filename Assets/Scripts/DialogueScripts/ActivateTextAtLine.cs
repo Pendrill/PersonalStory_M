@@ -23,7 +23,8 @@ public class ActivateTextAtLine : MonoBehaviour {
 	private PlayerAction Act;
 	private TextBoxManager lines;
 	public GameObject player;
-
+	public GameObject reticle;
+	bool isTextOnScreen = false;
 	// Use this for initialization
 	void Start () {
 		//Get the object with the textboxmanager script on it which is in the scene
@@ -36,8 +37,9 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//checks if the player clicked to activate the object
 		//Debug.Log (Act.getLook ());
 		//
-		if (waitForPress && Input.GetKeyDown (KeyCode.Mouse0)) {
+		if (waitForPress && Input.GetKeyDown (KeyCode.Mouse0) && !isTextOnScreen) {
 			//Debug.Log (Act.getLook ());
+			isTextOnScreen = true;
 			if (Act.getLook()) {
 				if (canLook) {
 					reloadTheText (LookText, startLine, endLine);
@@ -83,6 +85,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		//checks if it is the player that in fact collided with the object
 		if (other.tag == "Player") {
+			reticle.GetComponent<Renderer> ().material.color = Color.green;
 			Debug.Log ("square collides");
 			//checks if the object needs a button press to be activated
 			if (requireButtonPress) {
@@ -109,9 +112,16 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//If the player exits the collision area then the player should noo longer be able to press a button 
 		//and activate the object.
 		if (other.tag == "Player") {
+			reticle.GetComponent<Renderer> ().material.color = Color.red;
 			waitForPress = false;
 		}
 	}
 
+	public bool getIsTextOnScreen(){
+		return isTextOnScreen;
+	}
+	public void setIsTextOnScreen(bool activator){
+		isTextOnScreen = activator;
+	}
 	//TODO: change color of reticle when in range of object.
 }
