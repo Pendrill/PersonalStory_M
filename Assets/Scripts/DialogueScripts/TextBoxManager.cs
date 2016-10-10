@@ -30,8 +30,12 @@ public class TextBoxManager : MonoBehaviour {
 	public float typeSpeed;
 	private ActivateTextAtLine textOnScreen;
 
+	public GameObject player;
+	private PlayerMoveRB move;
+
 	// Use this for initialization
 	void Start () {
+		move = player.GetComponent<PlayerMoveRB> ();
 		textOnScreen = FindObjectOfType<ActivateTextAtLine> ();
 		//We check if there is a txt file to import
 		if (textFile != null) {
@@ -121,6 +125,7 @@ public class TextBoxManager : MonoBehaviour {
 	/// </summary>
 	public void enableTextBox(){
 		//set the textbox to active
+		move.setCanMove(false);
 		textBox.SetActive (true);
 		//the texbox is now active
 		isTextBoxActive = true;
@@ -132,6 +137,7 @@ public class TextBoxManager : MonoBehaviour {
 	/// Disables the text box.
 	/// </summary>
 	public void disableTextBox (){
+		move.setCanMove(true);
 		textOnScreen.setIsTextOnScreen (false);
 		//set the textBox to inactive
 		textBox.SetActive (false);

@@ -14,6 +14,7 @@ public class PlayerMoveRB : MonoBehaviour {
 	float mouse_Sensitivity = 1f;
 	//Vector 3 used to keep track of where the character is currently looking
 	Vector3 euler;
+	bool canMove;
 	// Use this for initialization
 	void Start () {
 		playerRigidBody = GetComponent<Rigidbody> ();
@@ -21,49 +22,58 @@ public class PlayerMoveRB : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Screen.lockCursor = true;
-		localVel = transform.InverseTransformDirection (playerRigidBody.velocity);
-		//localVel.z = speed;
-		//localVel.x = speed;
+		if (canMove) {
+			Screen.lockCursor = true;
+			localVel = transform.InverseTransformDirection (playerRigidBody.velocity);
+			//localVel.z = speed;
+			//localVel.x = speed;
 
-		float mouseX = Input.GetAxis ("Mouse X");
-		float mouseY = Input.GetAxis ("Mouse Y"); 
-		if (Input.GetKey (KeyCode.D)) {
-			//playerRigidBody.velocity += new Vector3 (speed * Time.deltaTime, 0, 0);
-			localVel.x = speed;
-			playerRigidBody.velocity = transform.TransformDirection(localVel) ;
-		}
-		if (Input.GetKey (KeyCode.A)) {
-			localVel.x = -speed;
-			//playerRigidBody.velocity += new Vector3 (-speed * Time.deltaTime, 0, 0);
-			playerRigidBody.velocity = transform.TransformDirection(localVel) ;
-		}
-		if (Input.GetKey (KeyCode.W)) {
-			localVel.z = speed;
-			//playerRigidBody.velocity += new Vector3 (0, 0, speed * Time.deltaTime);
-			playerRigidBody.velocity = transform.TransformDirection(localVel) ;
-		}
-		if (Input.GetKey (KeyCode.S)) {
-			localVel.z = -speed;
-			//playerRigidBody.velocity += new Vector3 (0, 0, -speed * Time.deltaTime);
-			playerRigidBody.velocity = transform.TransformDirection(localVel);
-		}
-		localVel= new Vector3 (0,0,0);
-		Camera.main.transform.localEulerAngles = euler;
-		euler.x -= mouseY*mouse_Sensitivity;
+			float mouseX = Input.GetAxis ("Mouse X");
+			float mouseY = Input.GetAxis ("Mouse Y"); 
+			if (Input.GetKey (KeyCode.D)) {
+				//playerRigidBody.velocity += new Vector3 (speed * Time.deltaTime, 0, 0);
+				localVel.x = speed;
+				playerRigidBody.velocity = transform.TransformDirection (localVel);
+			}
+			if (Input.GetKey (KeyCode.A)) {
+				localVel.x = -speed;
+				//playerRigidBody.velocity += new Vector3 (-speed * Time.deltaTime, 0, 0);
+				playerRigidBody.velocity = transform.TransformDirection (localVel);
+			}
+			if (Input.GetKey (KeyCode.W)) {
+				localVel.z = speed;
+				//playerRigidBody.velocity += new Vector3 (0, 0, speed * Time.deltaTime);
+				playerRigidBody.velocity = transform.TransformDirection (localVel);
+			}
+			if (Input.GetKey (KeyCode.S)) {
+				localVel.z = -speed;
+				//playerRigidBody.velocity += new Vector3 (0, 0, -speed * Time.deltaTime);
+				playerRigidBody.velocity = transform.TransformDirection (localVel);
+			}
+			localVel = new Vector3 (0, 0, 0);
+			Camera.main.transform.localEulerAngles = euler;
+			euler.x -= mouseY * mouse_Sensitivity;
 
-		//Camera.main.transform.Rotate(-mouseY,0f,0f);
-		//Rotates the player object left and right through the use of the mouse (look left and right).
-		transform.Rotate (0f, mouseX, 0f);
+			//Camera.main.transform.Rotate(-mouseY,0f,0f);
+			//Rotates the player object left and right through the use of the mouse (look left and right).
+			transform.Rotate (0f, mouseX, 0f);
 
-		//checks if the rotation angle exceeds the max and min allowed
-		if (euler.x >= playerVisionMaxX) {
-			//If so then the angle is locked between the max and min values.
-			euler.x = Mathf.Clamp(euler.x,playerVisionMinX,playerVisionMaxX);
+			//checks if the rotation angle exceeds the max and min allowed
+			if (euler.x >= playerVisionMaxX) {
+				//If so then the angle is locked between the max and min values.
+				euler.x = Mathf.Clamp (euler.x, playerVisionMinX, playerVisionMaxX);
+			}
+			//The same is done here but for the min values.
+			if (euler.x <= playerVisionMinX) {
+				euler.x = Mathf.Clamp (euler.x, playerVisionMinX, playerVisionMaxX);
+			}
 		}
-		//The same is done here but for the min values.
-		if (euler.x <= playerVisionMinX) {
-			euler.x = Mathf.Clamp(euler.x,playerVisionMinX,playerVisionMaxX);
-		}
+	}
+
+	public bool getCanMove(){
+		return canMove;
+	}
+	public void setCanMove(bool activator){
+		canMove = activator;
 	}
 }

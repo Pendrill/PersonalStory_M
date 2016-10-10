@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ActivateTextAtLine : MonoBehaviour {
 	 
+
 	//Takes a txt file 
 	public TextAsset theText;
 	public TextAsset cannotLook, cannotTalk, cannotTouch, LookText, TalkText, TouchText;
@@ -21,6 +22,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
 	public bool canLook, canTalk, canTouch;
 	private PlayerAction Act;
+	//private PlayerController move;
 	private TextBoxManager lines;
 	public GameObject player;
 	public GameObject reticle;
@@ -30,6 +32,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//Get the object with the textboxmanager script on it which is in the scene
 		theTextBoxManager = FindObjectOfType<TextBoxManager> ();
 		Act = player.GetComponent<PlayerAction> ();
+		//move = player.GetComponent<PlayerController> ();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +43,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		if (waitForPress && Input.GetKeyDown (KeyCode.Mouse0) && !isTextOnScreen) {
 			//Debug.Log (Act.getLook ());
 			isTextOnScreen = true;
+			//move.setCanMove (false);
 			if (Act.getLook()) {
 				if (canLook) {
 					reloadTheText (LookText, startLine, endLine);
