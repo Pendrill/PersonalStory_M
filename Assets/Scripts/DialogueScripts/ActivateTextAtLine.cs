@@ -90,7 +90,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//checks if it is the player that in fact collided with the object
 		if (other.tag == "Player") {
 			reticle.GetComponent<Renderer> ().material.color = Color.green;
-			Debug.Log ("square collides");
+			//Debug.Log ("square collides");
 			//checks if the object needs a button press to be activated
 			if (requireButtonPress) {
 				//so then we need to press a button, and cancel the rest of this function
