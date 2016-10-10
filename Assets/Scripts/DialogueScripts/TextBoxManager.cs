@@ -138,7 +138,7 @@ public class TextBoxManager : MonoBehaviour {
 	/// </summary>
 	public void disableTextBox (){
 		move.setCanMove(true);
-		textOnScreen.setIsTextOnScreen (false);
+		//textOnScreen.setIsTextOnScreen (false);
 		//set the textBox to inactive
 		textBox.SetActive (false);
 		//the textBox is no longer active
@@ -163,5 +163,8 @@ public class TextBoxManager : MonoBehaviour {
 
 	public int getEndLine(){
 		return endAtLine;
+	}
+	public bool getActiveTextBox(){
+		return isTextBoxActive;
 	}
 }

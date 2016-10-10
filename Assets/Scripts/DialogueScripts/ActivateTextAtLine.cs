@@ -65,6 +65,9 @@ public class ActivateTextAtLine : MonoBehaviour {
 			}
 
 		}
+		if (!theTextBoxManager.getActiveTextBox ()) {
+			isTextOnScreen = false;
+		}
 	}
 
 	void reloadTheText(TextAsset text, int startLine, int endLine){
