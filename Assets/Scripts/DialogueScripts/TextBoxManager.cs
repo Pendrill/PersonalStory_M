@@ -66,7 +66,7 @@ public class TextBoxManager : MonoBehaviour {
 		}
 		//dialogueText.text = textLines [currentLine];
 		//We press Space to navigate through the dialogue.
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Mouse0)) {
 			//Look at if there is no text getting typed on the screen currently
 			if (!isTyping) {							
 				//We move to the next line
