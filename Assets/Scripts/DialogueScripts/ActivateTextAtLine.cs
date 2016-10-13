@@ -40,7 +40,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//checks if the player clicked to activate the object
 		//Debug.Log (Act.getLook ());
 		//
-		if (waitForPress && Input.GetKeyDown (KeyCode.Mouse0) && !isTextOnScreen) {
+		if (waitForPress && Input.GetKeyDown (KeyCode.Space) && !isTextOnScreen) {
 			//Debug.Log (Act.getLook ());
 			isTextOnScreen = true;
 			//move.setCanMove (false);
