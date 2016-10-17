@@ -1,6 +1,6 @@
 //Maya ASCII 2017 scene
 //Name: FloorPlans.ma
-//Last modified: Sun, Oct 16, 2016 10:14:22 PM
+//Last modified: Sun, Oct 16, 2016 10:16:56 PM
 //Codeset: 1252
 requires maya "2017";
 currentUnit -l centimeter -a degree -t film;
@@ -13,13 +13,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "A9765588-4229-0041-2FDD-A391CDDA7FF0";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -19.075226322097908 -2.4095123164350731 -31.114071553740775 ;
-	setAttr ".r" -type "double3" 14.061647268003627 -3770.2000000165831 0 ;
+	setAttr ".t" -type "double3" 182.87461022385847 187.98191112776757 31.670342782863202 ;
+	setAttr ".r" -type "double3" -41.738352732891791 -3880.6000000132817 -1.7290194754916316e-014 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "D13B0DE7-48FE-0E35-58C4-99A3E68B7065";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 28.377460749587719;
+	setAttr ".coi" 268.65655353716477;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
