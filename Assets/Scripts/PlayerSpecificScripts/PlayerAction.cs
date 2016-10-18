@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//This script is just a bunch of getters and setters that get accessed to get/set
+//What the current action the player character is currently performing.
+
 public class PlayerAction : MonoBehaviour {
 	public bool isLooking;
 	public bool isTalking;
