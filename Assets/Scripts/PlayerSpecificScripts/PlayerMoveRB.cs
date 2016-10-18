@@ -21,7 +21,7 @@ public class PlayerMoveRB : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (canMove) {
 			Screen.lockCursor = true;
 			localVel = transform.InverseTransformDirection (playerRigidBody.velocity);
