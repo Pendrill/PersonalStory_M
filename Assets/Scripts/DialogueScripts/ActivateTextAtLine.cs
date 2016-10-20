@@ -119,7 +119,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		//If the player exits the collision area then the player should noo longer be able to press a button 
 		//and activate the object.
 		if (other.tag == "Player") {
-			reticle.GetComponent<Renderer> ().material.color = Color.red;
+			reticle.GetComponent<Renderer> ().material.color = Color.white;
 			waitForPress = false;
 		}
 	}
