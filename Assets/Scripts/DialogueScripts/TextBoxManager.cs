@@ -35,6 +35,7 @@ public class TextBoxManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 		move = player.GetComponent<PlayerMoveRB> ();
 		textOnScreen = FindObjectOfType<ActivateTextAtLine> ();
 		//We check if there is a txt file to import
@@ -54,6 +55,7 @@ public class TextBoxManager : MonoBehaviour {
 			enableTextBox ();
 		} else {
 			disableTextBox ();
+
 		}
 	}
 
@@ -75,6 +77,7 @@ public class TextBoxManager : MonoBehaviour {
 				if (currentLine > endAtLine) {
 					//there is no more text to display, so we disable the textBox
 					disableTextBox ();
+					//objCounter.addObj (1);
 				} else {
 					//If there is still more text to print, start the coroutine to have the text scroll on the screen.
 					StartCoroutine (textScroll (textLines [currentLine]));

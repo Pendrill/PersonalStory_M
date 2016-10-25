@@ -27,11 +27,15 @@ public class ActivateTextAtLine : MonoBehaviour {
 	public GameObject player;
 	public GameObject reticle;
 	bool isTextOnScreen = false;
+	TimesInteracted objCounter;
+	public bool isComputer;
 	// Use this for initialization
 	void Start () {
 		//Get the object with the textboxmanager script on it which is in the scene
 		theTextBoxManager = FindObjectOfType<TextBoxManager> ();
 		Act = player.GetComponent<PlayerAction> ();
+		objCounter = player.GetComponent<TimesInteracted> ();
+
 		//move = player.GetComponent<PlayerController> ();
 	}
 	
@@ -81,6 +85,11 @@ public class ActivateTextAtLine : MonoBehaviour {
 		theTextBoxManager.endAtLine = endLine;
 		//We enable the textBox to show the new dialogue that got activated when clicking
 		theTextBoxManager.enableTextBox ();
+		if (isComputer) {
+			objCounter.addComp (1);
+		} else {
+			objCounter.addObj (1);
+		}
 		//check if the object needs to be destroyed and destroy it if need be.
 		if (destroyWhenActivated) {
 			Destroy (gameObject);
