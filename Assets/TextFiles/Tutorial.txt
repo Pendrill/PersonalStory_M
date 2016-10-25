@@ -1,0 +1,13 @@
+I need to finish my work (mouseclick).
+But this comp sci stuff is hard.
+The deadline is approaching.
+But maybe i want to take a little break.
+There are a lot of things 
+to see in the house
+I can use WASD to move
+and my mouse to look around
+I can press Left Mouse to interact 
+with objects
+and press 1, 2, 3 to change 
+the modes of interaction
+Let's go explore and not work! 
